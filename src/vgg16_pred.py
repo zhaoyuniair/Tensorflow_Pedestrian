@@ -13,7 +13,7 @@ from CalPedDataset import Config as CalPedConfig
 def main():
     print sys.argv
 
-    dataHomeDir = '/home/jiwu/Database/Caltech-dataset/CalPedPropCNN-given'
+    dataHomeDir = '/home/jiwu/jiwu/Database/Caltech-dataset/CalPedProp'
     datasetConfig = CalPedConfig(batchSize=128,
                                  enableMemSave=True,
                                  datasetDir=dataHomeDir,
@@ -29,7 +29,7 @@ def main():
     print dataset.testset.getSampleNum()
     # print dataset.testset.imagePathList[1]
 
-    is_train = False
+    is_train = True
     is_test = True
     is_predict = True
 
@@ -37,7 +37,7 @@ def main():
     model = vgg16(initial_learning_rate=0.0001,
                   is_reload_model=is_reload_model,
                   is_use_vgg_pretrain=True,
-                  pre_weights_file='/home/jiwu/Workspace/python/pre-model/vgg16_weights.npz'
+                  pre_weights_file='/home/jiwu/jiwu/Workspace/python/pre-model/vgg16_weights.npz'
                   )
     model.set_dataset(dataset)
 
@@ -49,7 +49,7 @@ def main():
 
     if is_predict:
         # Load dataset
-        dataPredictHomeDir = '/home/jiwu/Database/Caltech-dataset/CalPedPropCNN-test'
+        dataPredictHomeDir = '/home/jiwu/jiwu/Database/Caltech-dataset/CalPedPropCNN-test'
         datasetPredictConfig = CalPedConfig(batchSize=128,
                                             enableMemSave=True,
                                             datasetDir=dataPredictHomeDir,
@@ -63,7 +63,7 @@ def main():
         print datasetPredict.testset.imagePathList[1]
         print datasetPredict.testset.isRandomBatch
 
-        track_dir = os.path.join('/home/jiwu/Workspace/AttentionModel',
+        track_dir = os.path.join('/home/jiwu/jiwu/Workspace/AttentionModel',
                                 'output/saveTrack/CalPed_CD_Cifar/')
         # ramPredict = CalPedCDRAM(config=config)
         # ramPredict.setDataset(datasetPredict)

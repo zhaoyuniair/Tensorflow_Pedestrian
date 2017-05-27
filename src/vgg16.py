@@ -19,7 +19,7 @@ class vgg16:
                  is_reload_model=False,
                  num_category=2,
                  keep_prob=0.9,
-                 home_dir='/home/jiwu/Workspace/python/cifar10/',
+                 home_dir='/home/jiwu/jiwu/Workspace/python/cifar10/',
                  model_dir='model',
                  model_filename='vgg16_ped_model.ckpt',
                  batch_size=128,
@@ -29,7 +29,7 @@ class vgg16:
                  epoch_num=50,
                  is_always_show=True,
                  is_use_vgg_pretrain=False,
-                 pre_weights_file='/home/jiwu/Workspace/python/pre-model/vgg16_weights.npz'):
+                 pre_weights_file='/home/jiwu/jiwu/Workspace/python/pre-model/vgg16_weights.npz'):
         self.learning_rate = initial_learning_rate
         self.is_reload_model = is_reload_model
         self.num_category = num_category
@@ -297,7 +297,7 @@ class vgg16:
                 sess.run(self.parameters[i].assign(weights[k]))
 
     def buildLossGraph(self):
-        cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(self.fc3l, self.labels, name='cross_entropy'))
+        cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=self.fc3l, labels=self.labels, name='cross_entropy'))
         self.loss = cross_entropy
         self.acc = tf.reduce_mean(
             tf.cast(
